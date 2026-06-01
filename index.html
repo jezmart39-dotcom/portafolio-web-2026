@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JezraelDev - Desarrollador Web</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #000000;
+            --text-color: #f5f5f7;
+            --surface-color: #111111;
+        }
+
+        .light-theme {
+            --bg-color: #ffffff;
+            --text-color: #1a1a1a;
+            --surface-color: #f5f5f7;
+        }
+
+        .light-theme .about-text,
+        .light-theme .intereses-text,
+        .light-theme .objetivo-text,
+        .light-theme .ios-text,
+        .light-theme .contact-desc,
+        .light-theme .bento-list li {
+            color: #4a4a4a;
+        }
+
+        .light-theme .about-text strong,
+        .light-theme .intereses-text strong,
+        .light-theme .objetivo-text strong,
+        .light-theme .marquee-item {
+            color: #1a1a1a;
+        }
+
+        .light-theme .about-text:hover,
+        .light-theme .intereses-text:hover,
+        .light-theme .objetivo-text:hover,
+        .light-theme .marquee-item:hover,
+        .light-theme .bento-list li:hover {
+            color: #000000;
+        }
+
+        .light-theme .marquee-container img,
+        .light-theme .social-links a i {
+            filter: invert(1) brightness(0);
+        }
+
+        .light-theme .social-links a {
+            color: #1a1a1a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.4s ease, color 0.4s ease;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 998;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            visibility: hidden;
+        }
+
+        body.dimmed::before {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 48px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-content {
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav-logo {
+            color: #f5f5f7;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #e8e8ed;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 400;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+            letter-spacing: -0.01em;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        section {
+            padding: 120px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero {
+            min-height: 80vh;
+            justify-content: center;
+            text-align: center;
+            padding-top: 100px;
+            background-color: var(--bg-color);
+        }
+
+        .hero h1 {
+            font-size: 80px;
+            font-weight: 600;
+            letter-spacing: -0.04em;
+            line-height: 1.05;
+            margin-bottom: 16px;
+            transition: transform 0.3s ease;
+            display: block;
+            background: linear-gradient(90deg, #c3e3d4, #80b1c0, #5a8fa8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero h2 {
+            font-size: 28px;
+            font-weight: 400;
+            letter-spacing: 0.008em;
+            color: #86868b;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            transition: transform 0.3s ease;
+            display: block;
+        }
+
+        .hero h1:hover,
+        .hero h2:hover {
+            transform: scale(1.03);
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 980px;
+            font-size: 14px;
+            font-weight: 400;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #0071e3;
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0077ed;
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #2997ff;
+            border: 1px solid #2997ff;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(41, 151, 255, 0.1);
+            transform: scale(1.05);
+        }
+
+        .section-headline {
+            font-size: 48px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 60px;
+            text-align: center;
+            background: linear-gradient(90deg, #c3e3d4, #80b1c0, #5a8fa8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #habilidades {
+            position: relative;
+            z-index: 1;
+        }
+
+        body.dimmed #habilidades {
+            z-index: 9999;
+        }
+
+        #habilidades .section-headline {
+            font-size: 56px;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        #habilidades .section-headline:hover {
+            transform: scale(1.05);
+        }
+
+        #perfil {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+        }
+
+        .perfil-text {
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-img-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        .profile-img {
+            width: 100%;
+            max-width: 1400px;
+            height: auto;
+            border-radius: 24px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.15);
+        }
+
+        #perfil .section-headline,
+        #perfil .about-text {
+            transition: transform 0.3s ease, filter 0.3s ease, color 0.3s ease;
+            display: block;
+        }
+
+        #perfil .section-headline:hover,
+        #perfil .about-text:hover {
+            transform: scale(1.03);
+            filter: brightness(1.5);
+            color: #ffffff;
+        }
+
+        .about-text {
+            font-size: 24px;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #86868b;
+            text-align: center;
+            max-width: 100%;
+            margin-bottom: 40px;
+        }
+
+        .about-text strong,
+        .intereses-text strong,
+        .objetivo-text strong {
+            color: #f5f5f7;
+            font-weight: 600;
+        }
+
+        #objetivo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+        }
+
+        #objetivo .section-headline,
+        .objetivo-text {
+            transition: transform 0.3s ease, filter 0.3s ease, color 0.3s ease;
+            display: block;
+        }
+
+        #objetivo .section-headline:hover,
+        .objetivo-text:hover {
+            transform: scale(1.05);
+            filter: brightness(1.5);
+            color: #ffffff;
+        }
+
+        .objetivo-text {
+            font-size: 24px;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #86868b;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            margin-bottom: 40px;
+        }
+
+        #ios-interest {
+            width: 100%;
+        }
+
+        .ios-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .ios-headline {
+            font-size: 32px;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #c3e3d4, #80b1c0, #5a8fa8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .ios-headline:hover {
+            transform: scale(1.05);
+        }
+
+        .ios-text {
+            font-size: 1.1rem;
+            font-weight: 400;
+            line-height: 1.6;
+            color: #86868b;
+            transition: transform 0.3s ease, filter 0.3s ease, color 0.3s ease;
+            display: block;
+        }
+
+        .ios-text:hover {
+            transform: scale(1.02);
+            background: linear-gradient(90deg, #2997ff, #a652f7, #ff3b68, #f58428);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .ios-carousel-container {
+            width: 100%;
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+        }
+
+        .ios-carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+        }
+
+        .carousel-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            min-width: 100%;
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .carousel-btn {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            border-radius: 50%;
+            transition: background 0.3s ease, transform 0.3s ease;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(0, 0, 0, 0.8);
+            transform: scale(1.15);
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            width: 100%;
+            margin-top: 40px;
+        }
+
+        .bento-item {
+            background-color: var(--surface-color);
+            border-radius: 24px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            transition: transform 0.3s ease, background-color 0.4s ease, max-height 0.5s ease;
+            max-height: 280px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+        }
+
+        .bento-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(transparent, var(--surface-color));
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .bento-item.expanded {
+            max-height: 1000px;
+            z-index: 9999;
+        }
+
+        .bento-item.expanded::after {
+            opacity: 0;
+        }
+
+        .bento-item:hover {
+            transform: scale(1.02);
+        }
+
+        .bento-item.expanded:hover {
+            transform: scale(1.02);
+        }
+
+        .bento-icon {
+            font-size: 32px;
+            color: #0071e3;
+            margin-bottom: 24px;
+        }
+
+        .bento-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .bento-list {
+            list-style: none;
+        }
+
+        .bento-list li {
+            font-size: 16px;
+            color: #86868b;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: transform 0.3s ease, filter 0.3s ease, color 0.3s ease;
+            transform-origin: left center;
+        }
+
+        .bento-list li:hover {
+            transform: scale(1.05);
+            filter: brightness(1.3);
+            color: #ffffff;
+        }
+
+        .bento-list li i {
+            font-size: 18px;
+            width: 24px;
+            text-align: center;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .bento-list li:hover i {
+            filter: brightness(1.3);
+            transform: scale(1.1);
+        }
+
+        .bento-list li .fa-html5 {
+            color: #E34F26;
+        }
+
+        .bento-list li .fa-css3-alt {
+            color: #1572B6;
+        }
+
+        .bento-list li .fa-js {
+            color: #F7DF1E;
+        }
+
+        .bento-list li .fa-git-alt {
+            color: #F05032;
+        }
+
+        .bento-list li .fa-figma {
+            color: #F24E1E;
+        }
+
+        .bento-list li .fa-language {
+            color: #00a8cc;
+        }
+
+        .bento-list li .fa-java {
+            color: #007396;
+        }
+
+        .bento-list li .fa-python {
+            color: #3776AB;
+        }
+
+        .bento-list li .fa-react {
+            color: #61DAFB;
+        }
+
+        .bento-list li .fa-people-group {
+            color: #FFD700;
+        }
+
+        .bento-list li .fa-comments {
+            color: #4CAF50;
+        }
+
+        .bento-list li .fa-wand-magic-sparkles {
+            color: #9C27B0;
+        }
+
+        .bento-list li .fa-stopwatch {
+            color: #FF5722;
+        }
+
+        .bento-list li .fa-arrows-spin {
+            color: #00BCD4;
+        }
+
+        .bento-list li .fa-heart {
+            color: #E91E63;
+        }
+
+        .bento-list li .fa-arrows-turn-right {
+            color: #8BC34A;
+        }
+
+        .bento-list li .fa-clock {
+            color: #3F51B5;
+        }
+
+        #portafolio .section-headline {
+            font-size: 56px;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        #portafolio .section-headline:hover {
+            transform: scale(1.1);
+        }
+
+        .portfolio-grid {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .project-card {
+            background-color: var(--surface-color);
+            border-radius: 24px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.3s ease, background-color 0.4s ease;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .project-card:hover {
+            transform: scale(1.02);
+        }
+
+        .project-image-container {
+            width: 100%;
+            height: 300px;
+            background-color: #1d1d1f;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .project-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 40px;
+        }
+
+        .project-info {
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .project-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .project-desc {
+            font-size: 16px;
+            color: #86868b;
+        }
+
+        .btn-project {
+            margin-top: 24px;
+        }
+
+        #intereses {
+            width: 100%;
+            padding: 120px 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #intereses .section-headline {
+            font-size: 56px;
+            transition: transform 0.3s ease;
+            display: inline-block;
+            margin-bottom: 40px;
+        }
+
+        #intereses .section-headline:hover {
+            transform: scale(1.1);
+        }
+
+        .intereses-text {
+            font-size: 21px;
+            font-weight: 400;
+            line-height: 1.6;
+            color: #86868b;
+            text-align: center;
+            max-width: 1000px;
+            margin-bottom: 60px;
+            transition: transform 0.3s ease, filter 0.3s ease, color 0.3s ease;
+        }
+
+        .intereses-text:hover {
+            transform: scale(1.03);
+            filter: brightness(1.5);
+            color: #ffffff;
+        }
+
+        .marquee-container {
+            width: 100%;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            display: flex;
+            background-color: var(--surface-color);
+            padding: 24px 0;
+        }
+
+        .marquee-content {
+            display: flex;
+            animation: scroll 30s linear infinite;
+        }
+
+        .marquee-item {
+            font-size: 24px;
+            font-weight: 600;
+            color: #86868b;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .marquee-item:hover {
+            color: #f5f5f7;
+            transform: scale(1.1);
+        }
+
+        .marquee-item i {
+            font-size: 28px;
+        }
+
+        .marquee-item img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .marquee-item .fa-js {
+            color: #F7DF1E;
+        }
+
+        .marquee-item .fa-java {
+            color: #007396;
+        }
+
+        .marquee-item .fa-css3-alt {
+            color: #1572B6;
+        }
+
+        .marquee-item .fa-apple {
+            color: #A2AAAD;
+        }
+
+        .marquee-item .fa-windows {
+            color: #00A4EF;
+        }
+
+        .marquee-item .fa-google {
+            color: #4285F4;
+        }
+
+        .marquee-item .fa-flag-checkered {
+            color: #FF1801;
+        }
+
+        .marquee-item .fa-car {
+            color: #001A30;
+        }
+
+        .marquee-item .fa-dragon {
+            color: #C89B3C;
+        }
+
+        .marquee-item .fa-spotify {
+            color: #1DB954;
+        }
+
+        .marquee-item .fa-music {
+            color: #FA243C;
+        }
+
+        .marquee-item .fa-cube {
+            color: #5A5A5A;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .contact-section {
+            text-align: center;
+            padding: 120px 20px;
+            background-color: var(--surface-color);
+            width: 100%;
+            max-width: 100%;
+            border-radius: 0;
+            margin-top: 80px;
+            transition: background-color 0.4s ease;
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-title {
+            font-size: 48px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            background: linear-gradient(90deg, #2997ff, #a652f7, #ff3b68, #f58428);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .contact-desc {
+            font-size: 21px;
+            color: #86868b;
+            margin-bottom: 40px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        .social-links a {
+            color: #f5f5f7;
+            font-size: 24px;
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .social-links a:hover {
+            color: #0071e3;
+            transform: scale(1.2);
+        }
+
+        footer {
+            text-align: center;
+            padding: 24px;
+            font-size: 12px;
+            color: #86868b;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: #000000;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .theme-switch {
+            background: transparent;
+            border: none;
+            color: #e8e8ed;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .theme-switch:hover {
+            transform: scale(1.15);
+        }
+
+        @media (max-width: 834px) {
+            .hero h1 {
+                font-size: 56px;
+            }
+
+            .hero h2 {
+                font-size: 21px;
+            }
+
+            .section-headline {
+                font-size: 40px;
+            }
+
+            #habilidades .section-headline {
+                font-size: 48px;
+            }
+
+            .about-text {
+                font-size: 18px;
+            }
+
+            .bento-grid,
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .ios-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-content">
+            <a href="https://youtu.be/GfsBmcorkyM?si=lIc252c2AuVv-NwJ" target="_blank" class="nav-logo"><img
+                    src="Imágenes-Logos/logo-jez.png" alt="" style="max-height: 24px;">
+                JezDev</a>
+            <ul class="nav-links">
+                <li><a href="#perfil">Perfil</a></li>
+                <li><a href="#habilidades">Habilidades</a></li>
+                <li><a href="#portafolio">Portafolio</a></li>
+                <li><a href="#intereses">Intereses</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><button id="themeToggle" class="theme-switch"><i
+                            class="fa-solid fa-circle-half-stroke"></i></button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero reveal">
+        <h1>JezraelDev</h1>
+        <h1>Web Developer</h1>
+        <h2>¡Hola! Soy Jez, Desarrollador en Aprendizaje Aspirante a Intern y un Full Stack Developer en Formación
+        </h2>
+        <div class="cta-group">
+            <a href="#portafolio" class="btn btn-primary">Ver proyectos</a>
+            <a href="#contacto" class="btn btn-secondary">Contactar</a>
+        </div>
+    </section>
+
+    <section id="perfil" class="reveal">
+        <div class="perfil-text reveal">
+            <h2 class="section-headline">Acerca de mí</h2>
+            <p class="about-text">
+                Soy un estudiante apasionado por la <strong>tecnología y la optimización.</strong> Mi enfoque en el
+                desarrollo frontend
+                se basa en la arquitectura limpia y el <strong>minimalismo estético.</strong> Soy un fan del
+                automovilismo, la buena
+                musica y los deportes, creo que el éxito en el desarrollo web radica en la experiencia visual al
+                usuario, el ajuste minucioso de cada detalle y la <strong>búsqueda incansable de la perfección
+                    visual.</strong>
+            </p>
+        </div>
+        <div class="profile-img-container reveal">
+            <img src="Imagenes-logos/Img-mac.png" alt="" class="profile-img">
+        </div>
+    </section>
+
+    <section id="objetivo" class="reveal">
+        <h2 class="section-headline">Objetivo Profesional</h2>
+        <p class="objetivo-text">
+            Busco una posición como <strong>Intern o Junior Developer</strong> donde pueda aplicar y expandir mis
+            conocimientos en desarrollo frontend, contribuir a proyectos significativos y <strong>aprender de
+                profesionales experimentados en la industria.</strong>
+        </p>
+    </section>
+
+    <section id="ios-interest" class="reveal">
+        <div class="ios-grid">
+            <div class="ios-text-col">
+                <h3 class="ios-headline reveal">Xcode developer</h3>
+                <p class="ios-text reveal">
+                    Me encantaría aprender y desarrollarme en el diseño movil y multiplataforma de iOS desde Xcode, ya
+                    que ofrece las herramientas necesarias para desarrollar, probar y distribuir aplicaciones para
+                    plataformas Apple, incluyendo la finalización predictiva de código, inteligencia generativa basada
+                    en los mejores modelos y agentes de codificación, herramientas avanzadas de análisis y depuración, y
+                    simuladores para dispositivos Apple.
+                </p>
+            </div>
+            <div class="ios-carousel-col reveal">
+                <div class="ios-carousel-container">
+                    <div class="ios-carousel-track" id="iosCarouselTrack">
+                        <img src="Imagenes-Logos/mac2.png" alt="" class="carousel-img">
+                        <img src="Imagenes-Logos/mac3.png" alt="" class="carousel-img">
+                        <img src="Imagenes-Logos/mac4.png" alt="" class="carousel-img">
+                        <img src="Imagenes-Logos/mac5.png" alt="" class="carousel-img">
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-btn prev-btn">&#10094;</button>
+                    <button class="carousel-btn next-btn">&#10095;</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="habilidades" class="reveal">
+        <h2 class="section-headline">Mis especificaciones técnicas</h2>
+        <div class="bento-grid">
+            <div class="bento-item">
+                <i class="fa-solid fa-microchip bento-icon"></i>
+                <h3 class="bento-title">Habilidades Duras</h3>
+                <ul class="bento-list">
+                    <li><i class="fa-brands fa-html5"></i> HTML5 Semántico</li>
+                    <li><i class="fa-brands fa-css3-alt"></i> CSS3 Flexbox y Grid</li>
+                    <li><i class="fa-brands fa-js"></i> JavaScript</li>
+                    <li><i class="fa-brands fa-git-alt"></i> Control de versiones (Git/GitHub)</li>
+                    <li><i class="fa-brands fa-figma"></i> Figma (UI/UX Design)</li>
+                    <li><i class="fa-solid fa-language"></i> Inglés B1</li>
+                    <li><i class="fa-brands fa-java"></i> Java</li>
+                    <li><i class="fa-brands fa-python"></i> Python</li>
+                    <li><i class="fa-brands fa-react"></i> React</li>
+                </ul>
+            </div>
+            <div class="bento-item">
+                <i class="fa-solid fa-users bento-icon"></i>
+                <h3 class="bento-title">Habilidades Blandas</h3>
+                <ul class="bento-list">
+                    <li><i class="fa-solid fa-people-group"></i> Liderazgo de equipos</li>
+                    <li><i class="fa-solid fa-comments"></i> Comunicación asertiva</li>
+                    <li><i class="fa-solid fa-wand-magic-sparkles"></i> Experiencias Web Interactivas</li>
+                    <li><i class="fa-solid fa-stopwatch"></i> Trabajo bajo presión</li>
+                    <li><i class="fa-solid fa-arrows-spin"></i> Adaptabilidad continua</li>
+                    <li><i class="fa-solid fa-heart"></i> Empatía con el usuario</li>
+                    <li><i class="fa-solid fa-arrows-turn-right"></i> Recibir y dar Feedback</li>
+                    <li><i class="fa-solid fa-clock"></i> Gestor del Tiempo</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="portafolio" class="reveal">
+        <h2 class="section-headline">Proyectos destacados</h2>
+        <div class="portfolio-grid">
+            <div class="project-card">
+                <div class="project-image-container">
+                    <img src="Imagenes-Logos/faid.png" alt="">
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Faid - Asesor Financiero</h3>
+                    <p class="project-desc">FAID: Tu dinero, tu control, nuestra inteligencia</p>
+                    <a href="https://devpost.com/software/faid-asesor-financiero" target="_blank"
+                        class="btn btn-primary btn-project">Saber Más</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="intereses" class="reveal">
+        <h2 class="section-headline">Mis Intereses</h2>
+        <p class="intereses-text">Entre playlists infinitas y descubrimientos musicales en, mis intereses se mueven
+            entre la <strong>tecnología, el deporte y la creatividad.</strong> Disfruto la emoción del béisbol siguiendo
+            a los New York
+            Yankees, la pasión del fútbol con Pachuca y la grandeza histórica del Real Madrid. <strong>El diseño a
+                través de la
+                programación es una gran forma de expresión, combinando lógica e imaginación para crear nuevas
+                ideas,</strong>
+            mientras que el anime, el cine y el dibujo alimentan mi lado más creativo y artístico. También me fascina el
+            mundo de la tecnología y la innovación, siguiendo de cerca a gigantes como Google, Apple y Microsoft. Y sin
+            olvidar una de mis mas grandes pasiones las maquinas y <strong>el automovilismo representan esa mezcla
+                perfecta
+                entre ingeniería, estrategia y pasión.</strong> Entre código, música, deportes y creatividad, mis gustos
+            reflejan una
+            personalidad curiosa, competitiva y siempre en busca de nuevas experiencias.</p>
+        <div class="marquee-container">
+            <div class="marquee-content">
+                <div class="marquee-item"><i class="fa-brands fa-js"></i> JavaScript</div>
+                <div class="marquee-item"><i class="fa-brands fa-java"></i> Java</div>
+                <div class="marquee-item"><i class="fa-brands fa-css3-alt"></i> CSS3</div>
+                <div class="marquee-item"><img src="Imagenes-logos/logo-cod.png" alt=""></div>
+                <div class="marquee-item"><img src="Imagenes-logos/logo-pachuca.png" alt=""></div>
+                <div class="marquee-item"><img src="Imagenes-logos/logo-realmadrid.png" alt=""></div>
+                <div class="marquee-item"><img src="Imagenes-logos/logo-yankees.png" alt=""></div>
+                <div class="marquee-item"><i class="fa-brands fa-apple"></i> Apple</div>
+                <div class="marquee-item"><i class="fa-brands fa-windows"></i> Microsoft</div>
+                <div class="marquee-item"><i class="fa-brands fa-google"></i> Google</div>
+                <div class="marquee-item"><img src="Imagenes/f1-logo.png" alt=""></div>
+                <div class="marquee-item"><img src="Imagenes/red-logo.png" alt=""></div>
+                <div class="marquee-item"><i class="fa-solid fa-dragon"></i> League of Legends</div>
+                <div class="marquee-item"><i class="fa-brands fa-spotify"></i> Spotify</div>
+                <div class="marquee-item"><i class="fa-solid fa-music"></i> Apple Music</div>
+                <div class="marquee-item"><img src="Imagenes/mine-logo.png" alt=""></div>
+
+                <div class="marquee-item"><i class="fa-brands fa-js"></i> JavaScript</div>
+                <div class="marquee-item"><i class="fa-brands fa-java"></i> Java</div>
+                <div class="marquee-item"><i class="fa-brands fa-css3-alt"></i> CSS3</div>
+                <div class="marquee-item"><img src="Imagenes-logos/logo-cod.png" alt=""></div>
+                <div class="marquee-item"><img src="Imagenes-logos/logo-pachuca.png" alt=""></div>
+                <div class="marquee-item"><img src="Imagenes-logos/logo-realmadrid.png" alt=""></div>
+                <div class="marquee-item"><img src="Imagenes-logos/logo-yankees.png" alt=""></div>
+                <div class="marquee-item"><i class="fa-brands fa-apple"></i> Apple</div>
+                <div class="marquee-item"><i class="fa-brands fa-windows"></i> Microsoft</div>
+                <div class="marquee-item"><i class="fa-brands fa-google"></i> Google</div>
+                <div class="marquee-item"><img src="Imagenes/f1-logo.png" alt=""></div>
+                <div class="marquee-item"><img src="Imagenes/red-logo.png" alt=""></div>
+                <div class="marquee-item"><i class="fa-solid fa-dragon"></i> League of Legends</div>
+                <div class="marquee-item"><i class="fa-brands fa-spotify"></i> Spotify</div>
+                <div class="marquee-item"><i class="fa-solid fa-music"></i> Apple Music</div>
+                <div class="marquee-item"><img src="Imagenes/mine-logo.png" alt=""></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="contact-section reveal">
+        <div class="contact-content">
+            <h2 class="contact-title">¿Listo para llamar?</h2>
+            <p class="contact-desc">Si buscas un desarrollador enfocado en la experiencia y la calidad, hablemos.
+            </p>
+            <div class="social-links">
+                <a href="mailto:jezmart39@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://github.com/jezmart39-dotcom" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/angel-jezrael-espino-martinez-414239325/" target="_blank"><i
+                        class="fa-brands fa-linkedin"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy;Copyright 2026 By Angel Jezrael Espino Martinez. Portafolio para el Taller de Introducción al
+            Desarrollo
+            Web.
+            Todos los derechos
+            reservados.</p>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+
+</html>
