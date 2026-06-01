@@ -117,6 +117,7 @@
             padding: 0 20px;
         }
 
+        /* Flexbox para alinear el logo y texto en la barra de navegación */
         .nav-logo {
             color: #f5f5f7;
             text-decoration: none;
@@ -125,7 +126,15 @@
             letter-spacing: -0.5px;
             display: flex;
             align-items: center;
-            gap: 8px;
+        }
+
+        /* Estilos para que el tamaño de la imagen sea proporcional a la barra de navegación */
+        .navbar-brand-img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 10px;
         }
 
         .nav-links {
@@ -750,9 +759,12 @@
             font-weight: 600;
             color: #86868b;
             padding: 0 40px;
+            /* Flexbox y estas propiedades previenen que el texto e imágenes se aplasten */
             display: flex;
             align-items: center;
-            gap: 12px;
+            justify-content: center;
+            gap: 15px;
+            white-space: nowrap;
             transition: color 0.3s ease, transform 0.3s ease;
         }
 
@@ -765,8 +777,16 @@
             font-size: 28px;
         }
 
+        /* Estas reglas de Flexbox (en .marquee-item) y object-fit previenen que el layout se rompa incluso si una imagen no carga temporalmente */
         .marquee-item img {
-            height: 50px;
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* Clase unificada para los nuevos iconos del stack tecnológico, asegurando que encajen perfectamente en el carrusel */
+        .tech-stack-icon {
+            height: 40px;
             width: auto;
             object-fit: contain;
         }
@@ -803,16 +823,8 @@
             color: #001A30;
         }
 
-        .marquee-item .fa-dragon {
-            color: #C89B3C;
-        }
-
         .marquee-item .fa-spotify {
             color: #1DB954;
-        }
-
-        .marquee-item .fa-music {
-            color: #FA243C;
         }
 
         .marquee-item .fa-cube {
@@ -853,6 +865,14 @@
             background: linear-gradient(90deg, #2997ff, #a652f7, #ff3b68, #f58428);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            /* Se establece inline-block para permitir el funcionamiento de transform */
+            display: inline-block;
+        }
+
+        /* Efecto que genera una animación de "Pop-Up" para mejorar la micro-interactividad del llamado a la acción */
+        .contact-title:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
         }
 
         .contact-desc {
@@ -958,9 +978,11 @@
 
     <nav>
         <div class="nav-content">
-            <a href="https://youtu.be/GfsBmcorkyM?si=lIc252c2AuVv-NwJ" target="_blank" class="nav-logo"><img
-                    src="Imágenes-Logos/logo-jez.png" alt="" style="max-height: 24px;">
-                JezDev</a>
+            <!-- Se actualiza la identidad eliminando el icono roto e insertando la nueva imagen -->
+            <a href="https://youtu.be/GfsBmcorkyM?si=lIc252c2AuVv-NwJ" target="_blank" class="nav-logo">
+                <img src="Imagenes-Logos/logo-jezdev.png" class="navbar-brand-img" alt="JezDev Logo">
+                JezDev
+            </a>
             <ul class="nav-links">
                 <li><a href="#perfil">Perfil</a></li>
                 <li><a href="#habilidades">Habilidades</a></li>
@@ -1093,7 +1115,8 @@
     </section>
 
     <section id="intereses" class="reveal">
-        <h2 class="section-headline">Mis Intereses</h2>
+        <!-- Refactorización del título de la sección a Tech Stack -->
+        <h2 class="section-headline">Tech Stack</h2>
         <p class="intereses-text">Entre playlists infinitas y descubrimientos musicales en, mis intereses se mueven
             entre la <strong>tecnología, el deporte y la creatividad.</strong> Disfruto la emoción del béisbol siguiendo
             a los New York
@@ -1110,39 +1133,56 @@
             personalidad curiosa, competitiva y siempre en busca de nuevas experiencias.</p>
         <div class="marquee-container">
             <div class="marquee-content">
+                <!-- Manteniendo elementos previos no eliminados y agregando los nuevos elementos técnicos solicitados -->
                 <div class="marquee-item"><i class="fa-brands fa-js"></i> JavaScript</div>
                 <div class="marquee-item"><i class="fa-brands fa-java"></i> Java</div>
                 <div class="marquee-item"><i class="fa-brands fa-css3-alt"></i> CSS3</div>
-                <div class="marquee-item"><img src="Imagenes-logos/logo-cod.png" alt=""></div>
-                <div class="marquee-item"><img src="Imagenes-logos/logo-pachuca.png" alt=""></div>
-                <div class="marquee-item"><img src="Imagenes-logos/logo-realmadrid.png" alt=""></div>
-                <div class="marquee-item"><img src="Imagenes-logos/logo-yankees.png" alt=""></div>
                 <div class="marquee-item"><i class="fa-brands fa-apple"></i> Apple</div>
                 <div class="marquee-item"><i class="fa-brands fa-windows"></i> Microsoft</div>
                 <div class="marquee-item"><i class="fa-brands fa-google"></i> Google</div>
-                <div class="marquee-item"><img src="Imagenes/f1-logo.png" alt=""></div>
-                <div class="marquee-item"><img src="Imagenes/red-logo.png" alt=""></div>
-                <div class="marquee-item"><i class="fa-solid fa-dragon"></i> League of Legends</div>
                 <div class="marquee-item"><i class="fa-brands fa-spotify"></i> Spotify</div>
-                <div class="marquee-item"><i class="fa-solid fa-music"></i> Apple Music</div>
-                <div class="marquee-item"><img src="Imagenes/mine-logo.png" alt=""></div>
 
+
+                <div class="marquee-item"><img src="Imagenes-Logos/logo-python.png" class="tech-stack-icon"
+                        alt="Python"> Python</div>
+                <div class="marquee-item"><img src="Imagenes-Logos/logo-react.png" class="tech-stack-icon" alt="React">
+                    React</div>
+                <div class="marquee-item"><img src="Imagenes-Logos/loho-type.png" class="tech-stack-icon"
+                        alt="TypeScript"> TypeScript</div>
+                <div class="marquee-item"><img src="Imagenes-Logos/logo-node.png" class="tech-stack-icon" alt="Node.js">
+                    Node.js</div>
+                <div class="marquee-item"><img src="Imagenes-Logos/logo-git.png" class="tech-stack-icon" alt="GitHub">
+                    GitHub</div>
+                <!-- Se eliminó el texto estático para evitar redundancia visual con el logo -->
+                <div class="marquee-item"><img src="Imagenes-Logos/logo-figma.png" class="tech-stack-icon" alt="Figma">
+                </div>
+                <div class="marquee-item"><img src="Imagenes-Logos/logo-xcode.png" class="tech-stack-icon" alt="Xcode">
+                    Xcode</div>
+
+                <!-- Segunda iteración para el efecto infinito -->
                 <div class="marquee-item"><i class="fa-brands fa-js"></i> JavaScript</div>
                 <div class="marquee-item"><i class="fa-brands fa-java"></i> Java</div>
                 <div class="marquee-item"><i class="fa-brands fa-css3-alt"></i> CSS3</div>
-                <div class="marquee-item"><img src="Imagenes-logos/logo-cod.png" alt=""></div>
-                <div class="marquee-item"><img src="Imagenes-logos/logo-pachuca.png" alt=""></div>
-                <div class="marquee-item"><img src="Imagenes-logos/logo-realmadrid.png" alt=""></div>
-                <div class="marquee-item"><img src="Imagenes-logos/logo-yankees.png" alt=""></div>
                 <div class="marquee-item"><i class="fa-brands fa-apple"></i> Apple</div>
                 <div class="marquee-item"><i class="fa-brands fa-windows"></i> Microsoft</div>
                 <div class="marquee-item"><i class="fa-brands fa-google"></i> Google</div>
-                <div class="marquee-item"><img src="Imagenes/f1-logo.png" alt=""></div>
-                <div class="marquee-item"><img src="Imagenes/red-logo.png" alt=""></div>
-                <div class="marquee-item"><i class="fa-solid fa-dragon"></i> League of Legends</div>
                 <div class="marquee-item"><i class="fa-brands fa-spotify"></i> Spotify</div>
-                <div class="marquee-item"><i class="fa-solid fa-music"></i> Apple Music</div>
-                <div class="marquee-item"><img src="Imagenes/mine-logo.png" alt=""></div>
+
+                <div class="marquee-item"><img src="Imagenes-Logos/logo-python.png" class="tech-stack-icon"
+                        alt="Python"> Python</div>
+                <div class="marquee-item"><img src="Imagenes-Logos/logo-react.png" class="tech-stack-icon" alt="React">
+                    React</div>
+                <div class="marquee-item"><img src="Imagenes-Logos/loho-type.png" class="tech-stack-icon"
+                        alt="TypeScript"> TypeScript</div>
+                <div class="marquee-item"><img src="Imagenes-Logos/logo-node.png" class="tech-stack-icon" alt="Node.js">
+                    Node.js</div>
+                <div class="marquee-item"><img src="Imagenes-Logos/logo-git.png" class="tech-stack-icon" alt="GitHub">
+                    GitHub</div>
+                <!-- Se eliminó el texto estático para evitar redundancia visual con el logo -->
+                <div class="marquee-item"><img src="Imagenes-Logos/logo-figma.png" class="tech-stack-icon" alt="Figma">
+                </div>
+                <div class="marquee-item"><img src="Imagenes-Logos/logo-xcode.png" class="tech-stack-icon" alt="Xcode">
+                    Xcode</div>
             </div>
         </div>
     </section>
