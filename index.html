@@ -386,12 +386,19 @@
             font-weight: 600;
         }
 
+        /* Fix: Se redujo el overlay oscuro al 40% para mayor brillo y se forzó max-width: 100% para lograr un efecto inmersivo de borde a borde (full-bleed) */
         #objetivo {
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            width: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('Imagenes-Logos/dev-chil.png') !important;
+            background-size: cover !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            max-width: 100% !important;
+            width: 100% !important;
+            padding: 160px 20px !important;
         }
 
         #objetivo .section-headline,
@@ -1082,7 +1089,7 @@
         </div>
     </section>
 
-    <section id="objetivo" class="reveal">
+    <section id="objetivo" class="reveal objetivo-section">
         <h2 class="section-headline">Objetivo Profesional</h2>
         <p class="objetivo-text">
             Busco una posición como <strong>Intern o Junior Developer</strong> donde pueda aplicar y expandir mis
