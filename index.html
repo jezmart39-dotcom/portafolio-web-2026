@@ -92,6 +92,7 @@
             visibility: visible;
         }
 
+        /* Contenedor del menú con z-index alto y fondo semi-transparente para que siempre esté visible y por encima de capas como el video Full Bleed */
         nav {
             position: fixed;
             top: 0;
@@ -167,14 +168,54 @@
             align-items: center;
         }
 
+        /* Ajustes específicos para forzar el comportamiento "Full Bleed" del componente Hero en modo estático */
         .hero {
-            min-height: 80vh;
+            position: relative;
+            display: flex;
             justify-content: center;
-            text-align: center;
-            padding-top: 100px;
-            background-color: var(--bg-color);
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            width: 100vw;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
         }
 
+        /* Video de fondo a pantalla completa */
+        .hero-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        /* Overlay oscuro estático para resaltar el texto */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        /* Contenedor central posicionado por delante de la máscara */
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* Título normalizado con degradado original */
         .hero h1 {
             font-size: 80px;
             font-weight: 600;
@@ -995,14 +1036,23 @@
         </div>
     </nav>
 
+    <!-- Base para futuro componente React <HeroVideoBackground /> -->
     <section class="hero reveal">
-        <h1>JezraelDev</h1>
-        <h1>Web Developer</h1>
-        <h2>¡Hola! Soy Jez, Desarrollador en Aprendizaje Aspirante a Intern y un Full Stack Developer en Formación
-        </h2>
-        <div class="cta-group">
-            <a href="#portafolio" class="btn btn-primary">Ver proyectos</a>
-            <a href="#contacto" class="btn btn-secondary">Contactar</a>
+        <video class="hero-video-bg" autoplay loop muted playsinline>
+            <source src="Imagenes-Logos/hero-video.mp4" type="video/mp4">
+        </video>
+        <!-- Overlay oscuro estático para resaltar el texto -->
+        <div class="hero-overlay"></div>
+        
+        <!-- Contenedor relativo para agrupar el contenido textual central -->
+        <div class="hero-content">
+            <h1>JezraelDev<br>Web Developer</h1>
+            <h2>¡Hola! Soy Jez, Desarrollador en Aprendizaje Aspirante a Intern y un Full Stack Developer en Formación
+            </h2>
+            <div class="cta-group">
+                <a href="#portafolio" class="btn btn-primary">Ver proyectos</a>
+                <a href="#contacto" class="btn btn-secondary">Contactar</a>
+            </div>
         </div>
     </section>
 

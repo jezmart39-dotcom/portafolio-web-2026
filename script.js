@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.classList.toggle('light-theme');
         });
     }
-
     const reveals = document.querySelectorAll('.reveal');
 
     const revealOnScroll = new IntersectionObserver((entries, observer) => {
