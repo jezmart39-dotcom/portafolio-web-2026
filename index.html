@@ -38,15 +38,21 @@
             color: #1a1a1a;
         }
 
+        /* Corrección de Contraste en Hover (Light Theme): Mantiene el texto oscuro y legible durante las animaciones, evitando que se vuelva blanco o invisible */
         .light-theme .about-text:hover,
         .light-theme .intereses-text:hover,
         .light-theme .objetivo-text:hover,
         .light-theme .marquee-item:hover,
         .light-theme .bento-list li:hover {
-            color: #000000;
+            color: #1a1a1a !important;
+            filter: brightness(1) !important;
         }
 
-        .light-theme .marquee-container img,
+        /* Corrección de Filtro en Carrusel (Light Theme): Preserva los colores originales de los logos técnicos eliminando el filtro de oscurecimiento */
+        .light-theme .marquee-container img {
+            filter: none !important;
+        }
+
         .light-theme .social-links a i {
             filter: invert(1) brightness(0);
         }
