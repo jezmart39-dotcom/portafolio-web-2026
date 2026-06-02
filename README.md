@@ -1,7 +1,7 @@
 🔗 Vista Previa
 
 Puedes visualizar el proyecto completamente desplegado aquí:
-👉 https://jezrael-dev-portafolio.netlify.app/
+👉 https://jezdev.netlify.app/
 
 🛠️ Tecnologías y Herramientas
 
