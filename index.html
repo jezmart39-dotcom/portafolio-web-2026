@@ -715,13 +715,15 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
         }
 
+        /* Configuración object-fit: cover en miniaturas de proyectos para garantizar que llenen su contenedor responsivamente sin deformarse, priorizando la parte superior */
         .project-image-container img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
-            padding: 40px;
+            object-fit: cover;
+            object-position: center top;
         }
 
         .project-info {
